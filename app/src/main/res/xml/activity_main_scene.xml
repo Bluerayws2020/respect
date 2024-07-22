@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    >
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="300" >
+
+        <OnClick
+            motion:clickAction="toggle"
+            motion:targetId="@id/back"/>
+
+
+        <OnSwipe
+            motion:dragDirection="dragRight"
+            motion:touchAnchorId="@id/fl_main"
+            motion:touchAnchorSide="right"
+            motion:onTouchUp="autoComplete"
+            />
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start" >
+
+        <Constraint
+            android:id="@+id/fl_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <Constraint
+            android:id="@+id/back_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/menu"/>
+
+<!--        <Constraint-->
+<!--            android:id="@+id/iv_menu"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            motion:layout_constraintBottom_toBottomOf="parent"-->
+<!--            motion:layout_constraintStart_toStartOf="parent"/>-->
+
+        <Constraint
+            android:id="@+id/fl_options"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent">
+
+            <PropertySet
+                android:visibility="gone"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent">
+
+            <PropertySet
+                android:visibility="visible"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/swipe_region"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+
+
+
+
+
+
+
+
+    <ConstraintSet android:id="@+id/end" >
+        <Constraint
+            android:id="@+id/fl_main"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.85"
+            motion:layout_constraintWidth_percent="0.98"
+            android:layout_marginEnd="-190dp"
+            android:background="@drawable/main_back"
+
+            >
+
+        </Constraint>
+
+<!--        <Constraint-->
+<!--            android:id="@+id/iv_menu"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            motion:layout_constraintBottom_toBottomOf="parent"-->
+<!--            motion:layout_constraintStart_toStartOf="parent"/>-->
+
+        <Constraint
+            android:id="@+id/fl_options"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent">
+
+            <PropertySet
+                android:visibility="visible"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/view2"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.85"
+            motion:layout_constraintWidth_percent="0.9"
+            android:layout_marginEnd="-190dp">
+
+            <PropertySet
+                android:visibility="gone"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/swipe_region"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHeight_percent="0.85"
+            motion:layout_constraintWidth_percent="0.9">
+
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

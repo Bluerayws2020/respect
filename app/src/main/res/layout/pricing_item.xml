@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="21dp"
+            android:background="@color/text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/line1"
+            app:layout_constraintStart_toStartOf="@+id/line1"
+            app:layout_constraintTop_toTopOf="@+id/line1" />
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_below="@+id/dialog_title"
+                android:layout_gravity="top"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                app:cardBackgroundColor="@color/text_color"
+                app:cardCornerRadius="8dp"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+
+                    android:fontFamily="@font/dubai"
+                    android:text="عبدالرحمن عبدالله"
+                    android:textColor="@color/text_gray"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+
+                    android:fontFamily="@font/dubai"
+                    android:text="30.05.2024"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+
+                        android:id="@+id/eye"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentEnd="true"
+                        android:backgroundTint="@color/light_gray"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:backgroundTint="@color/light_gray"
+                            android:padding="8dp"
+                            android:src="@drawable/view_active" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+
+                        android:id="@+id/edit"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:backgroundTint="@color/light_gray"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:backgroundTint="@color/light_gray"
+                            android:padding="8dp"
+                            android:src="@drawable/edit_active" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/statusButton"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/dubai"
+                android:text="Active"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="5dp" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

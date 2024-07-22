@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/hint">
+        <TextView
+            android:id="@+id/conutryName"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/dubai"
+            android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:text="St. Lucia"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/programName"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/dubai"
+           android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:text="DOM finance"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/dubai"
+            android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:text="$135.000"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+
+</LinearLayout>

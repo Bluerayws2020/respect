@@ -1,0 +1,235 @@
+<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/duo_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:content="@layout/content_layout"
+    app:menu="@layout/menu_layout"
+    app:contentScaleClosed="1.0"
+    app:contentScaleOpen="0.8"
+    app:menuScaleClosed="1.1"
+    app:menuScaleOpen="1.0"
+    app:clickToCloseScale="0.7"
+    app:menuAlphaClosed="0.0"
+    app:menuAlphaOpen="1.0"
+    android:background="@drawable/menu_bac1_new_color">
+
+    <!-- Content Layout -->
+    <RelativeLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:visibility="gone"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            />
+
+        <Button
+            android:id="@+id/open_drawer_button"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:text="Open Drawer"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <!-- Menu Layout -->
+    <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
+        android:id="@+id/duo_menu"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:tag="menu">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp"
+            android:padding="16dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/menu_item_home"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="الرئيسية"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/logo"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menu_item_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="حسابي"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/profile"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_item_my_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="فريقي"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/team"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_item_approval_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="موافقات الخصومات"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/approval"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/menu_item_quotations_history"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تاريخ الخصومات"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/quotation_history"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/menu_item_change_language"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تغيير اللغة"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/language"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/menu_item_logout"
+                android:gravity="center_vertical">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تسجيل الخروج"
+                    android:fontFamily="@font/dubai"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/logout"
+                    app:tint="@color/white"
+                    android:layout_marginHorizontal="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </nl.psdcompany.duonavigationdrawer.views.DuoMenuView>
+</nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>

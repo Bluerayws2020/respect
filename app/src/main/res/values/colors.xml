@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="hint">#638B8B8B</color>
+    <color name="light_gray">#238B8B8B</color>
+    <color name="text_color">#0C2748</color>
+    <color name="text_gray">#697984</color>
+    <color name="selected_pricing">#800C2748</color>
+    <color name="light_blue_0">#D80C2748</color>
+    <color name="light_blue">#800C2748</color>
+    <color name="orange">#E0C187</color>
+    <color name="menu_color">#FFFFFF</color>
+    <color name="active">#15AE5C</color>
+    <color name="pending">#F6A957</color>
+    <color name="expired">#626262</color>
+    <color name="lost">#D93131</color>
+</resources>

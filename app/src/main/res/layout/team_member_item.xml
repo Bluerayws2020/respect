@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_margin="4dp"
+        android:layout_alignParentEnd="true"
+        app:cardCornerRadius="50dp"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/hint"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/dubai"
+            android:gravity="center"
+            android:text="Fares"
+            android:maxLength="2"
+            android:textColor="@color/text_color"
+            android:textSize="27dp" />
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:src="@drawable/sample_pic"
+            android:background="@color/light_gray"
+            tools:ignore="UseAppTint" />
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

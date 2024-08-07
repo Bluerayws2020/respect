@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.blueray.raihan.viewModel.AppViewModel
 import com.blueray.respect.adapters.FormFeildsAdapter
 import com.blueray.respect.dialogs.SuccessSentDialog
@@ -51,12 +53,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val fragmentManager = requireActivity().supportFragmentManager
+                if (fragmentManager.backStackEntryCount > 1) {
+                    fragmentManager.popBackStack()
+                } else {
+                    requireActivity().finish()
+                }
+            }
+        })
         Glide.with(requireActivity())
             .load(HelperUtils.getUserImage(requireActivity()))
             .placeholder(R.drawable.ic_eye)
             .centerInside()
             .into(binding.includeTab.barUserImage)
-
         binding.next.setOnClickListener {
             val successfulPayDialog = SuccessSentDialog("تم ارسال الطلب للموافقة")
             successfulPayDialog.show(childFragmentManager, "DIALOG")
@@ -65,25 +76,44 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
                 startActivity(intent)
             }
         }
+        binding.includeTab.backButton.setOnClickListener{
+            activity?.onBackPressed()
+        }
 
+        binding.refreshLayout.setOnRefreshListener {
+
+            if (forEdit == true) {
+                viewModel.retrieveFormForEdit(q_id)
+                getFormForEdit()
+
+            } else {
+                viewModel.retrieveForm()
+                getForm()
+
+
+            }
+        }
         binding.includeTab.backIcon.setOnClickListener {
             drawerController?.openDrawer()
         }
 
         binding.next.setOnClickListener {
             if (forEdit == true) {
+                submitFormForEdit()
+            } else {
                 submitForm()
 
-            } else {
-                submitFormForEdit()
             }
         }
         if (forEdit == true) {
             viewModel.retrieveFormForEdit(q_id)
             getFormForEdit()
+            HomeFragment.forEdit = false
         } else {
             viewModel.retrieveForm()
             getForm()
+
+
         }
 
 
@@ -113,6 +143,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
                         "Error: ${result.exception.localizedMessage}",
                         Toast.LENGTH_SHORT
                     ).show()
+                    Log.d("WERTTCZ", result.exception.localizedMessage.toString())
                 }
 
                 else -> {}
@@ -124,12 +155,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         viewModel.getForm().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResults.Success -> {
+                    binding.refreshLayout.isRefreshing = false
                     formFieldsAdapter = FormFeildsAdapter(childFragmentManager, result.data, false)
                     binding.recycler.setHasFixedSize(true)
                     binding.recycler.adapter = formFieldsAdapter
+                    binding.recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                            super.onScrollStateChanged(recyclerView, newState)
+                            if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                                // Clear focus from all EditText fields when scrolling starts
+                                formFieldsAdapter.clearFocusFromAllEditTexts()
+
+
+                            }
+                        }
+                    })
                 }
 
                 is NetworkResults.Error -> {
+                    binding.refreshLayout.isRefreshing = false
                     Toast.makeText(
                         requireActivity(),
                         result.exception.localizedMessage.toString(),
@@ -172,12 +216,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         viewModel.getFormForEdit().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResults.Success -> {
+                    binding.refreshLayout.isRefreshing = false
                     formFieldsAdapter = FormFeildsAdapter(childFragmentManager, result.data, true)
                     binding.recycler.setHasFixedSize(true)
                     binding.recycler.adapter = formFieldsAdapter
+                    binding.recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                            super.onScrollStateChanged(recyclerView, newState)
+                            if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                                // Clear focus from all EditText fields when scrolling starts
+                                formFieldsAdapter.clearFocusFromAllEditTexts()
+                            }
+                        }
+                    })
                 }
 
                 is NetworkResults.Error -> {
+                    binding.refreshLayout.isRefreshing = false
                     Toast.makeText(
                         requireActivity(),
                         result.exception.localizedMessage.toString(),
@@ -216,4 +271,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         viewModel.retrieveInsertInput(fieldsMap)
         Log.d("DEBUG_TAG", "Submitting form with data: $fieldsMap")
     }
+
+
 }

@@ -31,21 +31,22 @@
         android:paddingTop="60dp">
 
         <LinearLayout
+            android:id="@+id/versionTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/orange"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="30dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/dubai"
                 android:padding="10dp"
-                android:text="V24-2024"
+                android:text="V25-2024"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

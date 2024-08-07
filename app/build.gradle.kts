@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.blueray.respect_new"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -79,4 +79,6 @@ dependencies {
     //Charts
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
+
+    implementation ("com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1")
 }

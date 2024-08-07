@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layoutDirection="rtl"
@@ -25,10 +24,14 @@
             android:text="عناية :"
 
             android:textColor="@color/text_color"
-            android:textSize="16sp"
-          />
+            android:textSize="16sp" />
 
-            <Spinner
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/normalSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -37,9 +40,57 @@
                 android:fontFamily="@font/dubai"
                 android:lines="1"
                 android:paddingHorizontal="20dp"
+                android:popupBackground="@color/white"
+                android:textSize="18sp"
+                app:hintText="  "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/arrowImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/arrow_down"
+                app:layout_constraintBottom_toBottomOf="@id/spinner"
+                app:layout_constraintLeft_toLeftOf="@id/spinner"
+                app:layout_constraintTop_toTopOf="@id/spinner" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                android:textSize="18sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/editingSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinnerForEdit"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/yellow_edit_text_bg"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/dubai"
+                android:lines="1"
+                android:paddingHorizontal="20dp"
+                android:popupBackground="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/arrowImageEdit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/arrow_down"
+                app:layout_constraintBottom_toBottomOf="@id/spinnerForEdit"
+                app:layout_constraintLeft_toLeftOf="@id/spinnerForEdit"
+                app:layout_constraintTop_toTopOf="@id/spinnerForEdit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
             android:id="@+id/edit_text"
@@ -48,12 +99,19 @@
             android:background="@drawable/yellow_edit_text_bg"
             android:drawablePadding="10dp"
             android:drawableTint="#BBBBBB"
+            android:focusable="auto"
+            android:focusedByDefault="false"
             android:fontFamily="@font/dubai"
             android:paddingHorizontal="20dp"
             android:textColor="#697984"
             android:textSize="18sp" />
 
-
-
+        <View
+            android:id="@+id/dummy_focus_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="invisible" />
     </LinearLayout>
 </LinearLayout>

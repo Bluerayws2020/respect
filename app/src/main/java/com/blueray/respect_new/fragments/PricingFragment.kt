@@ -49,7 +49,9 @@ class PricingFragment(private val onPricingListener: OnPricingListener?) :
             .into(binding.includeTab.barUserImage)
         viewModel.retrieveQutationHistory(HelperUtils.getUID(requireActivity()))
         getQutationHistory()
-
+        binding.includeTab.backButton.setOnClickListener{
+            activity?.onBackPressed()
+        }
 
         binding.includeTab.backIcon.setOnClickListener {
             drawerController?.openDrawer()

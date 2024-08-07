@@ -106,12 +106,12 @@ class MainActivity : AppCompatActivity(), DrawerController {
             duoMenuView.findViewById<LinearLayout>(R.id.menu_item_quotations_history).visibility =
                 View.GONE
         }
-        duoMenuView.findViewById<LinearLayout>(R.id.menu_item_home).setOnClickListener{
+        duoMenuView.findViewById<LinearLayout>(R.id.menu_item_home).setOnClickListener {
             replaceFragment(HomeFragment())
             duoDrawerLayout.closeDrawer(GravityCompat.START)
         }
 
-        duoMenuView.findViewById<LinearLayout>(R.id.menu_item_profile).setOnClickListener{
+        duoMenuView.findViewById<LinearLayout>(R.id.menu_item_profile).setOnClickListener {
             replaceFragment(MyProfileFragment())
             duoDrawerLayout.closeDrawer(GravityCompat.START)
         }
@@ -130,6 +130,12 @@ class MainActivity : AppCompatActivity(), DrawerController {
             duoDrawerLayout.closeDrawer(GravityCompat.START)
         }
         duoMenuView.findViewById<LinearLayout>(R.id.menu_item_logout).setOnClickListener {
+            val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
+
+            sharedPreferences.edit().apply {
+                putString("uid", "0")
+                putString("token", "0")
+            }.apply()
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
             finish()
@@ -140,15 +146,29 @@ class MainActivity : AppCompatActivity(), DrawerController {
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
-            .addToBackStack(null) // Add this line to enable back navigation
+            .addToBackStack(null)
             .commitAllowingStateLoss()
     }
+
 
 
     fun navigateToPricingDetailsFragment() {
         replaceFragment(PricingDetailsFragment())
     }
+
     fun navigateToHomeFragment() {
         replaceFragment(HomeFragment())
     }
+
+    fun navigateToPricingFragment() {
+        replaceFragment(PricingFragment(null))
+    }
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed() // Or exit the app as the default behavior
+        }
+    }
+
 }

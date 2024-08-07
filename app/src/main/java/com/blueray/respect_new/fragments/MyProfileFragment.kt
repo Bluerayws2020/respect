@@ -50,7 +50,9 @@ class MyProfileFragment : BaseFragment<FragmentMyProfileBinding, AppViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.includeTab.backButton.setOnClickListener{
+            activity?.onBackPressed()
+        }
         binding.saveBtn.setOnClickListener {
             imageFile?.let { it1 ->
                 viewModel.retrieveUpdateProfile(

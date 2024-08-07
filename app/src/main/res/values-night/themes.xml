@@ -3,7 +3,8 @@
     <style name="Base.Theme.RespectNew" parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="android:textColor">@color/text_color</item>
-
+        <item name="android:colorPrimary">@color/text_color</item>
+        <item name="android:colorPrimaryDark">@color/text_color</item>
         <!-- Default font family -->
         <item name="android:fontFamily">@font/dubai</item>
         <item name="android:statusBarColor">@color/white</item>

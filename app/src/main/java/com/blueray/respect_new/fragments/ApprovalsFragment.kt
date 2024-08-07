@@ -54,7 +54,9 @@ class ApprovalsFragment : BaseFragment<FragmentApprovalsBinding, AppViewModel>()
         binding.includeTab.backIcon.setOnClickListener {
             drawerController?.openDrawer()
         }
-
+        binding.includeTab.backButton.setOnClickListener{
+            activity?.onBackPressed()
+        }
         viewModel.retrieveInputsDiscount(HelperUtils.getUID(requireActivity()))
         getInputsDiscount()
         getSetInputDiscounts()
@@ -73,7 +75,10 @@ class ApprovalsFragment : BaseFragment<FragmentApprovalsBinding, AppViewModel>()
                 }
 
                 is NetworkResults.Error -> {
-                    toast(result.exception.localizedMessage.toString())
+                    binding.recycler.visibility = View.GONE
+                    binding.approve.visibility = View.GONE
+                    binding.noDataText.visibility = View.VISIBLE
+                    binding.homeButton.visibility = View.VISIBLE
                 }
 
                 else -> {
@@ -127,7 +132,8 @@ class ApprovalsFragment : BaseFragment<FragmentApprovalsBinding, AppViewModel>()
                 }
 
                 is NetworkResults.Error -> {
-                    Log.d("ERRORINJSON", result.exception.localizedMessage.toString())
+
+
                 }
 
                 else -> {

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 
 class MyTeamAdapter(
     private val myTeamList: List<GetMyTeamData>,
+    private val onTeamClicked: (String) -> Unit
 ) :
     RecyclerView.Adapter<MyTeamAdapter.ProductsViewHolder>() {
 
@@ -31,6 +32,9 @@ class MyTeamAdapter(
             val data = myTeamList[position]
             binding.name.text = data.full_name
             Glide.with(itemView.context).load(data.user_picture).into(binding.pic)
+        }
+        holder.binding.pic.setOnClickListener {
+            onTeamClicked(myTeamList[position].sid)
         }
     }
 }

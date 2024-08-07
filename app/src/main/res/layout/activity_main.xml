@@ -172,7 +172,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="تاريخ الخصومات"
+                    android:text="تسعيراتي"
                     android:fontFamily="@font/dubai"
                     android:textSize="16sp"
                     android:textColor="@color/white"

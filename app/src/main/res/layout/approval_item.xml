@@ -90,7 +90,6 @@
                         android:fontFamily="@font/dubai"
                         android:padding="5dp"
                         android:text="نعم"
-                        android:textColor="@color/text_gray"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +105,7 @@
                         android:textColor="@color/text_gray"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
+
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

@@ -11,6 +11,7 @@ import com.blueray.raihan.viewModel.AppViewModel
 import com.blueray.respect.adapters.MyTeamAdapter
 import com.blueray.respect_new.DrawerController
 import com.blueray.respect_new.R
+import com.blueray.respect_new.activities.MainActivity
 import com.blueray.respect_new.databinding.FragmentMyTeamBinding
 import com.blueray.respect_new.helpers.HelperUtils
 import com.blueray.respect_new.model.GetMyTeamQutationsData
@@ -50,6 +51,9 @@ class MyTeamFragment : BaseFragment<FragmentMyTeamBinding, AppViewModel>() {
         binding.includeTab.backIcon.setOnClickListener {
             drawerController?.openDrawer()
         }
+        binding.includeTab.backButton.setOnClickListener{
+            activity?.onBackPressed()
+        }
         barChart =  binding.barChart
         Glide.with(requireActivity())
             .load(HelperUtils.getUserImage(requireActivity()))
@@ -68,7 +72,10 @@ class MyTeamFragment : BaseFragment<FragmentMyTeamBinding, AppViewModel>() {
         viewModel.getMyTeam().observe(requireActivity()) { result ->
             when (result) {
                 is NetworkResults.Success -> {
-                    myTeamAdapter = MyTeamAdapter(result.data.msg.data)
+                    myTeamAdapter = MyTeamAdapter(result.data.msg.data ){
+                        HomeFragment.q_id = it
+                        (activity as MainActivity).navigateToPricingFragment()
+                    }
                     binding.recycler.setHasFixedSize(true)
                     binding.recycler.adapter = myTeamAdapter
                 }
@@ -112,7 +119,7 @@ class MyTeamFragment : BaseFragment<FragmentMyTeamBinding, AppViewModel>() {
         }
 
         val dataSet = BarDataSet(entries, "Quotations")
-        dataSet.colors = listOf(Color.MAGENTA)
+        dataSet.colors = listOf(R.color.text_color)
         val barData = BarData(dataSet)
         barData.barWidth = 0.5f // Adjust this value as needed
 

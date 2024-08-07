@@ -95,6 +95,7 @@
                         app:cardCornerRadius="50dp">
 
                         <ImageView
+                            android:id="@+id/eyeImage"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:backgroundTint="@color/light_gray"

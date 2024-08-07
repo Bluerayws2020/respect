@@ -36,14 +36,35 @@
                 android:src="@drawable/menu_icon"
                 tools:ignore="UseAppTint" />
         </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
 
+            android:id="@+id/backButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/back"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backImage"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:src="@drawable/back"
+                tools:ignore="UseAppTint" />
+        </com.google.android.material.card.MaterialCardView>
         <de.hdodenhof.circleimageview.CircleImageView
 
             android:id="@+id/barUserImage"
             android:layout_width="45dp"
             android:layout_height="45dp"
 
-            android:src="@drawable/blue_reg"
+
             app:civ_border_color="@color/black"
             app:civ_border_width="1dp"
 

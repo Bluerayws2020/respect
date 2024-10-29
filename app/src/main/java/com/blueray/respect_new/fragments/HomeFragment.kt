@@ -58,14 +58,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
                 val fragmentManager = requireActivity().supportFragmentManager
                 if (fragmentManager.backStackEntryCount > 1) {
                     fragmentManager.popBackStack()
+                    forEdit = false
                 } else {
                     requireActivity().finish()
+                    forEdit = false
                 }
             }
         })
         Glide.with(requireActivity())
             .load(HelperUtils.getUserImage(requireActivity()))
-            .placeholder(R.drawable.ic_eye)
             .centerInside()
             .into(binding.includeTab.barUserImage)
         binding.next.setOnClickListener {
@@ -78,6 +79,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         }
         binding.includeTab.backButton.setOnClickListener{
             activity?.onBackPressed()
+            forEdit = false
+        }
+        binding.includeTab.notifications.setOnClickListener {
+            (activity as MainActivity).navigateToNotificationsFragment()
         }
 
         binding.refreshLayout.setOnRefreshListener {
@@ -100,6 +105,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         binding.next.setOnClickListener {
             if (forEdit == true) {
                 submitFormForEdit()
+                HomeFragment.forEdit = false
             } else {
                 submitForm()
 
@@ -108,7 +114,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         if (forEdit == true) {
             viewModel.retrieveFormForEdit(q_id)
             getFormForEdit()
-            HomeFragment.forEdit = false
+           // HomeFragment.forEdit = false
         } else {
             viewModel.retrieveForm()
             getForm()
@@ -220,6 +226,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
                     formFieldsAdapter = FormFeildsAdapter(childFragmentManager, result.data, true)
                     binding.recycler.setHasFixedSize(true)
                     binding.recycler.adapter = formFieldsAdapter
+
                     binding.recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                             super.onScrollStateChanged(recyclerView, newState)
@@ -270,6 +277,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         // Call ViewModel to send JSON data to the server
         viewModel.retrieveInsertInput(fieldsMap)
         Log.d("DEBUG_TAG", "Submitting form with data: $fieldsMap")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        HomeFragment.forEdit = false
     }
 
 

@@ -11,6 +11,7 @@ import com.blueray.raihan.viewModel.AppViewModel
 import com.blueray.respect.adapters.ApprovalAdapter
 import com.blueray.respect_new.DrawerController
 import com.blueray.respect_new.R
+import com.blueray.respect_new.activities.MainActivity
 import com.blueray.respect_new.databinding.FragmentApprovalsBinding
 import com.blueray.respect_new.helpers.HelperUtils
 import com.blueray.respect_new.model.NetworkResults
@@ -62,6 +63,9 @@ class ApprovalsFragment : BaseFragment<FragmentApprovalsBinding, AppViewModel>()
         getSetInputDiscounts()
         binding.approve.setOnClickListener {
             createJsonObject()
+        }
+        binding.homeButton.setOnClickListener {
+            (activity as MainActivity).navigateToHomeFragment()
         }
     }
 

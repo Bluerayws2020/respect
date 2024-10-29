@@ -160,3 +160,13 @@ data class GetMyTeamQutationsData(
     val full_name: String,
     val quotations_count: Int
 )
+
+data class GetNotificationsResponse(
+    val `data`: List<String>,
+    val data_1: List<NotificationsData>,
+    val msg: Msg
+)
+data class NotificationsData(
+    val body: String,
+    val title: String
+)

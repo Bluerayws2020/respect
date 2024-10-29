@@ -2,7 +2,6 @@ package com.blueray.raihan.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blueray.respect_new.model.GetAvailableQuotationsResponse
@@ -10,16 +9,15 @@ import com.blueray.respect_new.model.GetFormResponse
 import com.blueray.respect_new.model.GetInputsDiscountResponse
 import com.blueray.respect_new.model.GetMyTeamQutationsResponse
 import com.blueray.respect_new.model.GetMyTeamResponse
+import com.blueray.respect_new.model.GetNotificationsResponse
 import com.blueray.respect_new.model.GetQotationHistoryResponse
 import com.blueray.respect_new.model.GetUserInfoResponse
 import com.blueray.respect_new.model.InsertInputResponse
 import com.blueray.respect_new.model.LoginResponse
-import com.blueray.respect_new.model.Msg
 import com.blueray.respect_new.model.NetworkResults
 import com.blueray.respect_new.model.UpdateProfileResponse
 import com.blueray.respect_new.repo.repo
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 import java.io.File
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
@@ -33,13 +31,14 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val logoutLiveData = MutableLiveData<NetworkResults<UpdateProfileResponse>>()
     private val getMyTeamLiveData = MutableLiveData<NetworkResults<GetMyTeamResponse>>()
     private val getQutationHistory = MutableLiveData<NetworkResults<GetQotationHistoryResponse>>()
+    private val getMyInputsLiveData = MutableLiveData<NetworkResults<GetQotationHistoryResponse>>()
     private val getInputsDiscountLiveData =
         MutableLiveData<NetworkResults<GetInputsDiscountResponse>>()
     private val getMyTeamQuotationsLiveData =
         MutableLiveData<NetworkResults<GetMyTeamQutationsResponse>>()
     private val setInputsDiscountLiveData = MutableLiveData<NetworkResults<UpdateProfileResponse>>()
     private val getFormForEditLiveData = MutableLiveData<NetworkResults<GetFormResponse>>()
-
+    private val notificationsLiveData = MutableLiveData<NetworkResults<GetNotificationsResponse>>()
     fun retrieveLogin(
         userName: String,
         password: String,
@@ -127,13 +126,23 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getMyTeam() = getMyTeamLiveData
 
-    fun retrieveQutationHistory(uid: String) {
+    fun retrieveQutationHistory(uid: String, input_id: String) {
         viewModelScope.launch {
-            getQutationHistory.postValue(repo.getQotationHistory(uid))
+            getQutationHistory.postValue(repo.getQotationHistory(uid, input_id))
         }
     }
 
     fun getQutationHistory() = getQutationHistory
+
+    fun retrieveMyInputs(uid: String) {
+        viewModelScope.launch {
+            getMyInputsLiveData.postValue(
+                repo.getMyInputs(uid)
+            )
+        }
+    }
+
+    fun getMyInputs() = getMyInputsLiveData
 
     fun retrieveInputsDiscount(uid: String) {
         viewModelScope.launch {
@@ -160,6 +169,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             setInputsDiscountLiveData.postValue(repo.setInputsDiscountsApprove(data))
         }
     }
+
     fun getSetInputDiscounts() = setInputsDiscountLiveData
 
 
@@ -170,4 +180,12 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getFormForEdit() = getFormForEditLiveData
+
+    fun retrieveNotifications(uid: String) {
+        viewModelScope.launch {
+            notificationsLiveData.postValue(repo.getNotifications(uid))
+        }
+    }
+
+    fun getNotifications() = notificationsLiveData
 }

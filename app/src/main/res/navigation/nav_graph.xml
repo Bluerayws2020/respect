@@ -17,4 +17,9 @@
         android:id="@+id/pricingDetailsFragment"
         android:name="com.blueray.respect_new.fragments.PricingDetailsFragment"
         tools:layout="@layout/fragment_pricing_details" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.blueray.respect_new.fragments.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

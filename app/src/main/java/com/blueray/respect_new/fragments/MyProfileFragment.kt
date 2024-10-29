@@ -54,6 +54,7 @@ class MyProfileFragment : BaseFragment<FragmentMyProfileBinding, AppViewModel>()
             activity?.onBackPressed()
         }
         binding.saveBtn.setOnClickListener {
+
             imageFile?.let { it1 ->
                 viewModel.retrieveUpdateProfile(
                     uid = HelperUtils.getUID(requireActivity()),

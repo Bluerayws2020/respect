@@ -71,7 +71,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="الرئيسية"
+                    android:text="انشاء تسعيرة"
                     android:fontFamily="@font/dubai"
                     android:textSize="20sp"
                     android:textColor="@color/white"
@@ -147,7 +147,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="موافقات الخصومات"
+                    android:text="طلبات الموافقة"
                     android:fontFamily="@font/dubai"
                     android:textSize="15sp"
                     android:textColor="@color/white"
@@ -172,7 +172,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="تسعيراتي"
+                    android:text="التسعيرات"
                     android:fontFamily="@font/dubai"
                     android:textSize="16sp"
                     android:textColor="@color/white"

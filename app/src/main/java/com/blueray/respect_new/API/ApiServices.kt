@@ -5,6 +5,7 @@ import com.blueray.respect_new.model.GetFormResponse
 import com.blueray.respect_new.model.GetInputsDiscountResponse
 import com.blueray.respect_new.model.GetMyTeamQutationsResponse
 import com.blueray.respect_new.model.GetMyTeamResponse
+import com.blueray.respect_new.model.GetNotificationsResponse
 import com.blueray.respect_new.model.GetQotationHistoryResponse
 import com.blueray.respect_new.model.GetUserInfoResponse
 import com.blueray.respect_new.model.InsertInputResponse
@@ -75,6 +76,13 @@ interface ApiServices {
     @Multipart
     @POST("app/getQotationHistory")
     suspend fun getQotationHistory(
+        @Part("uid") uid: RequestBody,
+        @Part("input_id") input_id: RequestBody
+    ): GetQotationHistoryResponse
+
+    @Multipart
+    @POST("app/getMyInputs")
+    suspend fun getMyInputs(
         @Part("uid") uid: RequestBody
     ): GetQotationHistoryResponse
 
@@ -99,4 +107,10 @@ interface ApiServices {
     suspend fun getFormForEdit(
         @Part("input_id") input_id: RequestBody
     ): GetFormResponse
+
+    @Multipart
+    @POST("app/getMyNotifications")
+    suspend fun getNotifications(
+        @Part("uid") uid: RequestBody
+    ): GetNotificationsResponse
 }

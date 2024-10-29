@@ -3,7 +3,8 @@ package com.blueray.respect_new
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-
+import com.onesignal.OneSignal
+const val ONE_SIGNAL_ID = "5b0743b7-6b0e-48fa-b474-6dd4c531d48b"
 class AppClass : Application() {
 
     companion object {
@@ -16,12 +17,11 @@ class AppClass : Application() {
         context =this
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-//        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
-//
-//        OneSignal.initWithContext(this)
-//        OneSignal.setAppId(ONESIGNAL_APP_ID)
-//
-//        OneSignal.promptForPushNotifications();
-//        OneSignal.promptLocation()
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
+
+        OneSignal.initWithContext(this)
+        OneSignal.setAppId(ONE_SIGNAL_ID)
+
+        OneSignal.promptLocation()
     }
 }

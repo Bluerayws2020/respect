@@ -74,7 +74,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-
+            android:id="@+id/notifications"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentEnd="true"
@@ -87,6 +87,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:padding="5dp"

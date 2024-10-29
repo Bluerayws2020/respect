@@ -7,11 +7,11 @@ import com.blueray.respect_new.model.GetFormResponse
 import com.blueray.respect_new.model.GetInputsDiscountResponse
 import com.blueray.respect_new.model.GetMyTeamQutationsResponse
 import com.blueray.respect_new.model.GetMyTeamResponse
+import com.blueray.respect_new.model.GetNotificationsResponse
 import com.blueray.respect_new.model.GetQotationHistoryResponse
 import com.blueray.respect_new.model.GetUserInfoResponse
 import com.blueray.respect_new.model.InsertInputResponse
 import com.blueray.respect_new.model.LoginResponse
-import com.blueray.respect_new.model.Msg
 import com.blueray.respect_new.model.NetworkResults
 import com.blueray.respect_new.model.UpdateProfileResponse
 import kotlinx.coroutines.Dispatchers
@@ -146,11 +146,30 @@ object repo {
         }
     }
 
-    suspend fun getQotationHistory(uid: String): NetworkResults<GetQotationHistoryResponse> {
+    suspend fun getQotationHistory(
+        uid: String,
+        input_id: String
+    ): NetworkResults<GetQotationHistoryResponse> {
         val uidBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val input_idBody = input_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         return withContext(Dispatchers.IO) {
             try {
                 val results = ApiClient.retrofitService.getQotationHistory(
+                    uidBody,
+                    input_idBody
+                )
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getMyInputs(uid: String): NetworkResults<GetQotationHistoryResponse> {
+        val uidBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.getMyInputs(
                     uidBody
                 )
                 NetworkResults.Success(results)
@@ -198,11 +217,23 @@ object repo {
         }
     }
 
-    suspend fun getFormForEdit(input_id:String): NetworkResults<GetFormResponse> {
+    suspend fun getFormForEdit(input_id: String): NetworkResults<GetFormResponse> {
         val input_idBody = input_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         return withContext(Dispatchers.IO) {
             try {
                 val results = ApiClient.retrofitService.getFormForEdit(input_idBody)
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getNotifications(uid: String): NetworkResults<GetNotificationsResponse> {
+        val uidBody = uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.getNotifications(uidBody)
                 NetworkResults.Success(results)
             } catch (e: Exception) {
                 NetworkResults.Error(e)

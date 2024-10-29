@@ -19,9 +19,12 @@ import com.blueray.respect_new.fragments.ApprovalsFragment
 import com.blueray.respect_new.fragments.HomeFragment
 import com.blueray.respect_new.fragments.MyProfileFragment
 import com.blueray.respect_new.fragments.MyTeamFragment
+import com.blueray.respect_new.fragments.NotificationsFragment
 import com.blueray.respect_new.fragments.PricingDetailsFragment
 import com.blueray.respect_new.fragments.PricingFragment
+import com.blueray.respect_new.fragments.QuotationHistoryFragment
 import com.blueray.respect_new.helpers.HelperUtils
+import com.onesignal.OneSignal
 import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
 import nl.psdcompany.duonavigationdrawer.views.DuoMenuView
 import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity(), DrawerController {
 
         duoDrawerLayout = findViewById(R.id.duo_drawer_layout)
         duoMenuView = findViewById(R.id.duo_menu)
+        OneSignal.promptForPushNotifications();
 
         // Dynamically set the width of the drawer to 45% of the screen width
         val displayMetrics = DisplayMetrics()
@@ -103,8 +107,8 @@ class MainActivity : AppCompatActivity(), DrawerController {
             duoMenuView.findViewById<LinearLayout>(R.id.menu_item_approval_center).visibility =
                 View.GONE
         } else {
-            duoMenuView.findViewById<LinearLayout>(R.id.menu_item_quotations_history).visibility =
-                View.GONE
+//            duoMenuView.findViewById<LinearLayout>(R.id.menu_item_quotations_history).visibility =
+//                View.GONE
         }
         duoMenuView.findViewById<LinearLayout>(R.id.menu_item_home).setOnClickListener {
             replaceFragment(HomeFragment())
@@ -159,9 +163,15 @@ class MainActivity : AppCompatActivity(), DrawerController {
     fun navigateToHomeFragment() {
         replaceFragment(HomeFragment())
     }
-
+    fun navigateToNotificationsFragment() {
+        replaceFragment(NotificationsFragment())
+    }
     fun navigateToPricingFragment() {
         replaceFragment(PricingFragment(null))
+    }
+
+    fun navigateToQuotationHistoryFragment() {
+        replaceFragment(QuotationHistoryFragment())
     }
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) {

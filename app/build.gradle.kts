@@ -79,6 +79,9 @@ dependencies {
     //Charts
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
+    //firebase
+    implementation (platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation ("com.google.firebase:firebase-analytics")
 
     implementation ("com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1")
 }

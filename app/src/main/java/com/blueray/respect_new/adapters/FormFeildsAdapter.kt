@@ -136,10 +136,17 @@ class FormFeildsAdapter(
                         adapter.setDropDownViewResource(R.layout.custom_spinner_item)
                         binding.spinnerForEdit.adapter = adapter
 
+                        binding.spinnerForEdit.onItemSelectedListener = null
 
                         val preSelectedIndex = updatedOptions.indexOf(formField.value)
-                        if (preSelectedIndex != -1) {
-                            binding.spinnerForEdit.setSelection(preSelectedIndex)
+                        if (formField.value.isNullOrEmpty()) {
+                            updatedOptions.add(0 , " ")
+                            binding.spinnerForEdit.setSelection(0)
+                        } else {
+                            if (preSelectedIndex != -1) {
+                                binding.spinnerForEdit.setSelection(preSelectedIndex)
+                            }
+
                         }
 
                         binding.spinnerForEdit.onItemSelectedListener =
@@ -208,7 +215,7 @@ class FormFeildsAdapter(
 
     fun clearFocusFromAllEditTexts() {
         for (editText in editTexts) {
-            if (editText.isFocused){
+            if (editText.isFocused) {
                 editText.clearFocus()
                 hideKeyboard(editText)
             }

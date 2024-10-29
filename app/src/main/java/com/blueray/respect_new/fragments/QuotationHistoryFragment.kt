@@ -2,6 +2,7 @@ package com.blueray.respect_new.fragments
 
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,26 +11,21 @@ import androidx.fragment.app.viewModels
 import com.blueray.raihan.viewModel.AppViewModel
 import com.blueray.respect.adapters.PricingAdapter
 import com.blueray.respect_new.DrawerController
-import com.blueray.respect_new.OnPricingListener
 import com.blueray.respect_new.R
 import com.blueray.respect_new.activities.MainActivity
-import com.blueray.respect_new.databinding.FragmentPricingBinding
+import com.blueray.respect_new.databinding.FragmentQuotationHistoryBinding
 import com.blueray.respect_new.helpers.HelperUtils
 import com.blueray.respect_new.model.NetworkResults
 import com.bumptech.glide.Glide
 
-class PricingFragment(private val onPricingListener: OnPricingListener?) :
-    BaseFragment<FragmentPricingBinding, AppViewModel>() {
+
+class QuotationHistoryFragment :BaseFragment<FragmentQuotationHistoryBinding , AppViewModel>() {
 
     override val viewModel by viewModels<AppViewModel>()
-    private lateinit var pricingAdapter: PricingAdapter
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentPricingBinding {
-        return FragmentPricingBinding.inflate(inflater, container, false)
+    private lateinit var quotationHistoryAdapter: PricingAdapter
+    companion object{
+        var input_id = ""
     }
-
     private var drawerController: DrawerController? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,6 +35,13 @@ class PricingFragment(private val onPricingListener: OnPricingListener?) :
             throw RuntimeException("$context must implement DrawerController")
         }
     }
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentQuotationHistoryBinding {
+        return FragmentQuotationHistoryBinding.inflate(inflater , container , false)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +50,7 @@ class PricingFragment(private val onPricingListener: OnPricingListener?) :
             .placeholder(R.drawable.ic_eye)
             .centerInside()
             .into(binding.includeTab.barUserImage)
-        viewModel.retrieveMyInputs(HelperUtils.getUID(requireActivity()))
+        viewModel.retrieveQutationHistory(HelperUtils.getUID(requireActivity()) , input_id)
         getQutationHistory()
         binding.includeTab.backButton.setOnClickListener {
             activity?.onBackPressed()
@@ -59,10 +62,10 @@ class PricingFragment(private val onPricingListener: OnPricingListener?) :
     }
 
     private fun getQutationHistory() {
-        viewModel.getMyInputs().observe(requireActivity()) { result ->
+        viewModel.getQutationHistory().observe(requireActivity()) { result ->
             when (result) {
                 is NetworkResults.Success -> {
-                    pricingAdapter = PricingAdapter(result.data.data, {
+                    quotationHistoryAdapter = PricingAdapter(result.data.data, {
                         HomeFragment.q_id = it
                         (activity as MainActivity).navigateToPricingDetailsFragment()
                     }, {
@@ -78,7 +81,7 @@ class PricingFragment(private val onPricingListener: OnPricingListener?) :
 
 
                     binding.recycler.setHasFixedSize(true)
-                    binding.recycler.adapter = pricingAdapter
+                    binding.recycler.adapter = quotationHistoryAdapter
                 }
 
                 is NetworkResults.Error -> {

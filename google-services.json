@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1023319126995",
+    "project_id": "respect-c8007",
+    "storage_bucket": "respect-c8007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023319126995:android:f7f8d87eb6ffdf74bef526",
+        "android_client_info": {
+          "package_name": "com.blueray.respect_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDojWaTHzRxihAmG2ffB2W96nAqLVRkoE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -89,6 +89,7 @@
                         android:layout_marginTop="-10dp"
                         android:fontFamily="@font/dubai"
                         android:padding="5dp"
+                        android:textColor="@color/text_gray"
                         android:text="نعم"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"

@@ -14,7 +14,8 @@ import com.blueray.respect_new.model.GetQotationHistoryData
 class PricingAdapter(
     private val list: List<GetQotationHistoryData>,
     private val preview: (q_id: String) -> Unit,
-    private val edit: (q_id: String) -> Unit
+    private val edit: (q_id: String) -> Unit,
+    private val history: (q_id: String) -> Unit,
 ) :
     RecyclerView.Adapter<PricingAdapter.ProductsViewHolder>() {
 
@@ -89,7 +90,9 @@ class PricingAdapter(
 
                 }
             }
-
+            binding.statusButton.setOnClickListener{
+                history(data.input_id)
+            }
 
         }
     }
